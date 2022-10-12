@@ -18,6 +18,8 @@ public class Account {
 	}
 
 	public void withdraw(Date date, BigDecimal amount) {
+		if(amount.compareTo(balance) == 1)
+			throw new IllegalArgumentException(String.format("Should not withdraw amount %s more than balance %s", amount, balance));
 		balance = balance.add(amount.negate());
 	}
 
