@@ -12,7 +12,7 @@ public class StatementLine {
 		this.currentBalance = currentBalance;
 	}
 
-	public String type() {
+	public TransactionType type() {
 		return transaction.getType();
 	}
 

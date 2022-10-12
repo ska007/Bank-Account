@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import com.kata.bankAccount.domain.StatementLine;
 import com.kata.bankAccount.domain.Transaction;
+import com.kata.bankAccount.domain.TransactionType;
 
 public class StatementLineFormatterTest {
 
@@ -18,7 +19,7 @@ public class StatementLineFormatterTest {
 	public void should_print_a_formatted_statement_line_deposit() throws ParseException {
 		final StatementLineFormatter statementLineFormatter = new StatementLineFormatter();
 		assertEquals(statementLineFormatter.format(new StatementLine(
-				new Transaction("DEPOSIT", dateFormat.parse("09/10/2022"), new BigDecimal(100.0)),
+				new Transaction(TransactionType.DEPOSIT, dateFormat.parse("09/10/2022"), new BigDecimal(100.0)),
 				new BigDecimal(100.0))), "DEPOSIT | 09/10/2022 | 100 | 100" + System.lineSeparator());
 	}
 	
@@ -26,7 +27,7 @@ public class StatementLineFormatterTest {
 	public void should_print_a_formatted_statement_line_withdraw() throws ParseException {
 		final StatementLineFormatter statementLineFormatter = new StatementLineFormatter();
 		assertEquals(statementLineFormatter.format(new StatementLine(
-				new Transaction("WITHDRAW", dateFormat.parse("09/10/2022"), new BigDecimal(100.0)),
+				new Transaction(TransactionType.WITHDRAW, dateFormat.parse("09/10/2022"), new BigDecimal(100.0)),
 				BigDecimal.ZERO)), "WITHDRAW | 09/10/2022 | 100 | 0" + System.lineSeparator());
 	}
 

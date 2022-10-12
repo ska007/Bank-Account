@@ -17,8 +17,8 @@ public class Account {
 	public void deposit(Date date, BigDecimal amount) {
 		if (amount.compareTo(BigDecimal.ZERO) == -1)
 			throw new IllegalArgumentException(String.format("Should not deposit a negative amount: %s", amount));
-		balance = balance.add(amount);
-		Transaction transaction = new Transaction("DEPOSIT", date, amount);
+		Transaction transaction = new Transaction(TransactionType.DEPOSIT, date, amount);
+		balance = transaction.balanceAfterTransaction(balance);
 		StatementLine statementLine = new StatementLine(transaction, balance);
 		statement.addLine(statementLine);
 	}
@@ -26,8 +26,8 @@ public class Account {
 	public void withdraw(Date date, BigDecimal amount) {
 		if(amount.compareTo(balance) == 1)
 			throw new IllegalArgumentException(String.format("Should not withdraw amount %s more than balance %s", amount, balance));
-		balance = balance.add(amount.negate());
-		Transaction transaction = new Transaction("WITHDRAW", date, amount.negate());
+		Transaction transaction = new Transaction(TransactionType.WITHDRAW, date, amount.negate());
+		balance = transaction.balanceAfterTransaction(balance);
 		StatementLine statementLine = new StatementLine(transaction, balance);
 		statement.addLine(statementLine);
 	}

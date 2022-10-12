@@ -17,6 +17,7 @@ import com.kata.bankAccount.domain.StatementLine;
 import com.kata.bankAccount.domain.IConsole;
 import com.kata.bankAccount.domain.IStatementPrinter;
 import com.kata.bankAccount.domain.Transaction;
+import com.kata.bankAccount.domain.TransactionType;
 import com.kata.bankAccount.format.StatementLineFormatter;
 
 public class ConsoleStatementPrinterTest {
@@ -38,7 +39,7 @@ public class ConsoleStatementPrinterTest {
 	@Test
 	public void should_ask_to_format_a_statement_line() throws ParseException {
 		StatementLine statementLine = new StatementLine(
-				new Transaction("DEPOSIT", dateFormat.parse("09/10/2022"), new BigDecimal(100.0)),
+				new Transaction(TransactionType.DEPOSIT, dateFormat.parse("09/10/2022"), new BigDecimal(100.0)),
 				new BigDecimal(100.0));
 
 		statement.addLine(statementLine);
@@ -52,7 +53,7 @@ public class ConsoleStatementPrinterTest {
 		final String formattedStatementLine =   "DEPOSIT | 09/10/2022 | 100 | 100" + System.lineSeparator();
 		when(statementLineFormatter.format(any(StatementLine.class))).thenReturn(formattedStatementLine);
 		StatementLine statementLine = new StatementLine(
-				new Transaction("DEPOSIT", dateFormat.parse("09/10/2022"), new BigDecimal(100.0)),
+				new Transaction(TransactionType.DEPOSIT, dateFormat.parse("09/10/2022"), new BigDecimal(100.0)),
 				new BigDecimal(100.0));
 		
 		statement.addLine(statementLine);

@@ -15,7 +15,7 @@ public class StatementTest {
 
 	@Test
 	public void should_add_line_deposit() throws ParseException {
-		Transaction transaction = new Transaction("DEPOSIT", dateFormat.parse("09/10/2022"),
+		Transaction transaction = new Transaction(TransactionType.DEPOSIT, dateFormat.parse("09/10/2022"),
 				new BigDecimal(100.0));
 		StatementLine statementLine = new StatementLine(transaction, new BigDecimal(100.0));		
 		statement.addLine(statementLine);
@@ -24,7 +24,7 @@ public class StatementTest {
 
 	@Test
 	public void should_add_line_withdraw() throws ParseException {
-		Transaction transaction = new Transaction("WITHDRAW", dateFormat.parse("09/10/2022"),
+		Transaction transaction = new Transaction(TransactionType.WITHDRAW, dateFormat.parse("09/10/2022"),
 				new BigDecimal(100.0));
 		StatementLine statementLine = new StatementLine(transaction, new BigDecimal(100.0));
 		statement.addLine(statementLine);

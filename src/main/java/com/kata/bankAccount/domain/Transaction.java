@@ -4,17 +4,17 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class Transaction {
-	private String type;
+	private TransactionType type;
 	private Date date;
 	private BigDecimal amount;
 
-	public Transaction(String type, Date date, BigDecimal amount) {
+	public Transaction(TransactionType type, Date date, BigDecimal amount) {
 		this.type = type;
 		this.date = date;
 		this.amount = amount;
 	}
 
-	public String getType() {
+	public TransactionType getType() {
 		return type;
 	}
 
@@ -24,5 +24,9 @@ public class Transaction {
 
 	public BigDecimal getAmount() {
 		return amount;
+	}
+
+	public BigDecimal balanceAfterTransaction(BigDecimal currentBalance) {
+		return currentBalance = currentBalance.add(amount);
 	}
 }
