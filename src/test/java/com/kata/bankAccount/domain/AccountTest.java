@@ -38,4 +38,11 @@ public class AccountTest {
 		account.withdraw(dateFormat.parse("10/10/2022"), new BigDecimal(50.0));
 		assertEquals(new BigDecimal(50.0), account.getBalance());
 	}
+	
+	@Test
+	public void should_withdraw_all_savings() throws ParseException {
+		account.deposit(dateFormat.parse("09/10/2022"), new BigDecimal(100.0));
+		account.withdraw(dateFormat.parse("10/10/2022"), new BigDecimal(100.0));
+		assertEquals(BigDecimal.ZERO, account.getBalance());
+	}
 }
