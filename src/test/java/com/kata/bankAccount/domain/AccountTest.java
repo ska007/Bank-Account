@@ -31,4 +31,11 @@ public class AccountTest {
 		assertThrows(IllegalArgumentException.class, 
 				() -> account.deposit(dateFormat.parse("10/10/2022"), new BigDecimal(-50.0)));
 	}
+	
+	@Test
+	public void should_withdraw_some_of_savings() throws ParseException {
+		account.deposit(dateFormat.parse("09/10/2022"), new BigDecimal(100.0));
+		account.withdraw(dateFormat.parse("10/10/2022"), new BigDecimal(50.0));
+		assertEquals(new BigDecimal(50.0), account.getBalance());
+	}
 }

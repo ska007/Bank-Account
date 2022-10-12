@@ -12,12 +12,17 @@ public class Account {
 	}
 
 	public void deposit(Date date, BigDecimal amount) {
-		if(amount.compareTo(BigDecimal.ZERO) == -1) 
+		if (amount.compareTo(BigDecimal.ZERO) == -1)
 			throw new IllegalArgumentException(String.format("Should not deposit a negative amount: %s", amount));
 		balance = balance.add(amount);
+	}
+
+	public void withdraw(Date date, BigDecimal amount) {
+		balance = balance.add(amount.negate());
 	}
 
 	public BigDecimal getBalance() {
 		return balance;
 	}
+
 }
